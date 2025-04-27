@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sedzani Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Variables */
+    :root {
+      --bg: #12121a;
+      --bg-alt: #1f1f2f;
+      --primary: #0cafff;
+      --white: #fff;
+      --light-text: #aaa;
+      --transition: all 0.3s ease;
+    }
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.6;
+    }
+    a { color: var(--primary); text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--white); }
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; width: 100%; background: var(--bg-alt);
+      padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
+      z-index: 100;
+    }
+    .logo { font-size: 1.5rem; font-weight: 600; }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .menu-toggle .bar { width: 25px; height: 3px; background: var(--white); }
+    .nav-menu { display: flex; gap: 2rem; }
+    .nav-menu a { font-weight: 500; }
+    /* Hero */
+    .hero {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6rem 5% 4rem; background: var(--bg-alt); margin-top: 60px;
+    }
+    .hero-text { flex: 1; max-width: 600px; }
+    .hero-text h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero-text h1 span { color: var(--primary); }
+    .hero-text p { margin-bottom: 2rem; color: var(--light-text); }
+    .hero-img { flex: 1; text-align: right; }
+    .hero-img img { width: 300px; border-radius: 10px; }
+    /* Section Styles */
+    section { padding: 4rem 5%; border-top: 1px solid var(--bg); }
+    .section-title { font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
+    /* Skills */
+    #skills { background: var(--bg-alt); }
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .skill-box {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+    .skill-box h3 { margin-bottom: 1rem; }
+    .skill-list { list-style: none; color: var(--light-text); }
+    .skill-list li { margin-bottom: 0.5rem; }
+    /* About */
+    .about { display: flex; flex-wrap: wrap; gap: 2rem; }
+    .about-img, .about-content { flex: 1; min-width: 280px; }
+    .about-content ul { list-style: disc inside; margin-top: 1rem; color: var(--light-text); }
+    /* Projects */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: var(--bg-alt);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .project-card:hover { transform: translateY(-5px); }
+    .project-img img {
+      width: 100%; height: 180px; object-fit: cover;
+    }
+    .project-info { padding: 1rem; }
+    .project-info h3 { margin-bottom: 0.5rem; }
+    .project-info p { font-size: 0.9rem; margin-bottom: 0.75rem; color: var(--light-text); }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .project-tech span {
+      background: var(--primary);
+      color: var(--bg-alt);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    /* Contact */
+    #contact .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .contact-info, .contact-form {
+      flex: 1; min-width: 280px;
+      background: var(--bg-alt);
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+    .contact-info p { margin-bottom: 1rem; }
+    .social-links { display: flex; gap: 1rem; font-size: 1.5rem; margin-bottom: 1rem; }
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+    }
+    .contact-form button {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 5px;
+      background: var(--primary);
+      color: var(--bg-alt);
+      cursor: pointer;
+    }
+    /* Footer */
+    footer { text-align: center; padding: 2rem 0; color: var(--light-text); }
+    /* Responsive */
+    @media(max-width:768px) {
+      .menu-toggle { display: flex; }
+      .nav-menu {
+        position: absolute; top: 60px; left: -100%;
+        flex-direction: column; width: 100%; background: var(--bg-alt);
+        padding: 1rem 0; gap: 1rem; transition: var(--transition);
+      }
+      .nav-menu.active { left: 0; }
+      .hero { flex-direction: column; text-align: center; }
+      .hero-img { margin-top: 2rem; }
+      section { padding: 3rem 2rem; }
+      .projects-container, .skills-container { grid-template-columns: 1fr; }
+      #contact .contact-container { flex-direction: column; }
+    }
+    @media(max-width:480px) {
+      .hero-text h1 { font-size: 2rem; }
+      .hero-img img { width: 200px; }
+      .section-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Sedzani</div>
+    <div class="menu-toggle" id="mobile-menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+    <div class="nav-menu" id="nav-menu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="hero-text">
+      <h1>Hi, I am <span> Nemusunda Sedzani</span></h1>
+      <p>Second-year student at University of Venda studying BSc Computer Science & Information Systems.</p>
+    </div>
+    <div class="hero-img"><img src="self.png" alt="Sedzani"></div>
+  </header>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about">
+      <div class="about-img"><img src="selfi.png" alt="Profile"></div>
+      <div class="about-content">
+        <p><strong>Academic Background:</strong></p>
+        <ul>
+          <li>Primary School:Tshisahulu Primary School</li>
+          <li>High School:Lwamonndo high school</li> 
+          <li>Currently pursuing BSc Computer Science & Information Systems at University of Venda</li>
+        </ul>
+        <p><strong>Career Goals:</strong></p>
+        <ul><li>Become a front-end developer specializing in accessible interfaces</li>
+            <li>Contribute to open-source HCI projects</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-container">
+      <div class="skill-box">
+        <h3>Technical Skills</h3>
+        <ul class="skill-list">
+          <li>HTML & CSS</li>
+          <li>JavaScript </li>
+          <li>C++ & java</li>
+          <li>Git & GitHub</li>
+        </ul>
+      </div>
+      <div class="skill-box">
+        <h3>Soft Skills</h3>
+        <ul class="skill-list">
+          <li>Communication</li>
+          <li>Teamwork</li>
+          <li>Problem-Solving</li>
+          <li>Time Management</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-container">
+      <div class="project-card">
+        <div class="project-info">
+          <h3>Portfolio Website</h3>
+          <p>Personal portfolio showcasing projects and skills using HTML, CSS, and JavaScript.</p>
+          <div class="project-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-info">
+          <h3>Task Manager App</h3>
+          <p>A simple task manager built with java and Netbeans IDE for managing daily tasks.</p>
+          <div class="project-tech"><span>JAVA</span><span>NETBEANS IDE</span></div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-info">
+          <h3>calculator</h3>
+          <p>A calculator apllication with simple maths functions like addition,substraction,multiplication and division.</p>
+          <div class="project-tech"><span>Java</span><span>Netbeans IDE</span> <span>GUI</span></div>
+        </div>
+      </div>
+      
+      
+      
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <p>Email:<br><a href="mailto:2401490@mvula.univen.ac.za">14014290@mvula.univen.ac.za</a></p>
+        <p>GitHub:<br><a href="#"><i class="24014290"></i> github.com/24014290</a></p>
+        <p>LinkedIn:<br><a href="#"><i class="nsedzani@icloud.com"></i> nsedzani@icloud.com</a></p>
+      <p>Contact:<a href="0672865766"><i class="0672865766"></i>0672865766</a></p>
+      </div>
+      <div class="contact-form">
+        <form>
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea rows="3" placeholder="Your Message" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>&copy; <span id="year"></span> Sedzani. All rights reserved.</footer>
+
+  <script>
+    document.getElementById('mobile-menu').addEventListener('click', ()=> {
+      document.getElementById('nav-menu').classList.toggle('active');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
